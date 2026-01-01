@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'profile_screen.dart';
@@ -85,7 +88,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             /// Button Register
             PrimaryButton(
               label: "REGISTER",
-              onPressed: () {
+              onPressed: () async {
+                /// validation check
                 if (inUsernameController.text.isEmpty ||
                     inEmailController.text.isEmpty ||
                     inPasswordController.text.isEmpty) {
@@ -98,6 +102,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   return;
                 }
 
+                /// register to firebase
+                await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                  email: inEmailController.text,
+                  password: inPasswordController.text,
+                );
+
+                /// navigate to profile screen
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
