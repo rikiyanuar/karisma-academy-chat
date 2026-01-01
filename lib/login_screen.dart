@@ -1,8 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:chat/profile_screen.dart';
 import 'package:chat/register_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/buttons.dart';
@@ -68,40 +66,41 @@ class _LoginScreenState extends State<LoginScreen> {
             PrimaryButton(
               label: "LOGIN",
               onPressed: () async {
-                try {
-                  /// validation check
-                  if (inEmailController.text.isEmpty ||
-                      inPasswordController.text.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text("Semua kolom harus diisi"),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
-                    return;
-                  }
+                throw Exception();
+                // try {
+                //   /// validation check
+                //   if (inEmailController.text.isEmpty ||
+                //       inPasswordController.text.isEmpty) {
+                //     ScaffoldMessenger.of(context).showSnackBar(
+                //       SnackBar(
+                //         content: Text("Semua kolom harus diisi"),
+                //         backgroundColor: Colors.red,
+                //       ),
+                //     );
+                //     return;
+                //   }
 
-                  await FirebaseAuth.instance.signInWithEmailAndPassword(
-                    email: inEmailController.text,
-                    password: inPasswordController.text,
-                  );
+                //   await FirebaseAuth.instance.signInWithEmailAndPassword(
+                //     email: inEmailController.text,
+                //     password: inPasswordController.text,
+                //   );
 
-                  /// Navigate to profile screen
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => ProfileScreen(
-                        email: inEmailController.text,
-                        username: inEmailController.text,
-                      ),
-                    ),
-                  );
-                } on Exception catch (_) {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text("Email atau password tidak sesuai"),
-                    backgroundColor: Colors.red,
-                  ));
-                }
+                //   /// Navigate to profile screen
+                //   Navigator.pushReplacement(
+                //     context,
+                //     MaterialPageRoute(
+                //       builder: (BuildContext context) => ProfileScreen(
+                //         email: inEmailController.text,
+                //         username: inEmailController.text,
+                //       ),
+                //     ),
+                //   );
+                // } on Exception catch (_) {
+                //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                //     content: Text("Email atau password tidak sesuai"),
+                //     backgroundColor: Colors.red,
+                //   ));
+                // }
               },
             ),
             Divider(
